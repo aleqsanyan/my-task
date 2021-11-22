@@ -1,31 +1,31 @@
 import React, {Fragment, useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
 
-/*import {getPostData} from "../actions/postAction";*/
 import {updateName, editName, deletePost} from "../actions/postAction"
+import { RootState } from "../reducers"
 
-const Post = () => {
+const User = () => {
     const dispatch = useDispatch()
-    const post = useSelector(state => state.post.posts)
+    const post = useSelector((state: RootState)  => state.post.posts)
+   // console.log(post,'posts')
 
-    /*  useEffect(() => {
-          dispatch(getPostData())
+      useEffect(() => {
+          dispatch(getSinglelUser(1))
       }, [])
-  */
-    let getValue = (id, e) => {
-        let title = e.target.value
+
+    let getValue = (id: number, e: any): void => {
+        let title: string = e.target.value
         dispatch(updateName({id, title}))
     }
 
-    let edit = (id, hidden) => {
-        let isHidden = !hidden
+    let edit = (id: number, hidden: boolean) => {
+        let isHidden: boolean = !hidden
         dispatch(editName({id, isHidden}))
     }
 
-    let remove = (id) => {
+    let remove = (id: number): void => {
         dispatch(deletePost(id))
     }
-
 
     return (
         <Fragment>
@@ -45,9 +45,8 @@ const Post = () => {
                     )
                 })}
             </ul>
-
         </Fragment>
     )
 }
 
-export default Post
+export default User
